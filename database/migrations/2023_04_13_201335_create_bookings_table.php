@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('role')->default('user');
-            $table->rememberToken();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('service_id')->constrained();
+            $table->foreignId('bookable_slot_id')->constrained();
+            $table->text('persons')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('bookings');
     }
 };
