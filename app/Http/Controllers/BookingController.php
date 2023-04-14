@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Booking;
+use App\Models\BookableSlot;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
-use App\Models\Booking;
 
 class BookingController extends Controller
 {
@@ -13,7 +15,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+        $bookings = $user->bookings;
+        return response()->json($bookings);
     }
 
     /**
@@ -21,7 +25,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+    
     }
 
     /**

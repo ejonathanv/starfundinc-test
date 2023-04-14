@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,15 @@ class BookableSlotFactory extends Factory
      */
     public function definition(): array
     {
+
+        $hourRange = range(8, 20);
+        $start_at = Carbon::now()->addDays(rand(1, 30))->hour($hourRange[rand(0, count($hourRange) - 1)]);
+        $end_at = $start_at->copy()->addMinutes(rand(30, 90));
+
         return [
-            //
+            'start_at' => $start_at,
+            'end_at' => $end_at,
+            'capacity' => rand(1, 10),
         ];
     }
 }

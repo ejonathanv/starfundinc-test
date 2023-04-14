@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function bookableSlot()
+    {
+        return $this->belongsTo(BookableSlot::class);
+    }
+
+    public function people()
+    {
+        return $this->hasMany(BookingPeople::class);
+    }
+
+
 }

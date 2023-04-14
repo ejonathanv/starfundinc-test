@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\BookableSlot;
 use App\Http\Requests\StoreBookableSlotRequest;
 use App\Http\Requests\UpdateBookableSlotRequest;
-use App\Models\BookableSlot;
 
 class BookableSlotController extends Controller
 {
@@ -13,7 +14,13 @@ class BookableSlotController extends Controller
      */
     public function index()
     {
-        //
+        $from = Carbon::now();
+        $to = Carbon::now()->addDays(7);
+        $dates = BookableSlot::whereDate('start_at', '>=', $from)
+            ->whereDate('start_at', '<=', $to)
+            ->orderBy('start_at')
+            ->get();
+        return response()->json($dates);
     }
 
     /**

@@ -19,9 +19,11 @@ class BookingFactory extends Factory
      */
     public function definition(): array
     {
+
+        $status = ['pending', 'confirmed', 'cancelled'][rand(0, 2)];
+
         return [
             'user_id' => User::factory(),
-            'service_id' => Service::factory(),
             'bookable_slot_id' => BookableSlot::factory(),
             'status' => $status,
         ];

@@ -1,3 +1,28 @@
+## Installation
+
+<p>
+    <code>git clone this repository</code>
+    <br>
+    <code>cd</code>
+    <br>
+    <code>composer install</code>
+    <br>
+    <code>npm install</code>
+    <br>
+    <code>npm run dev</code>
+    <br>
+    <code>cp .env.example .env</code>
+    <br>
+    <code>php artisan key:generate</code>
+    <br>
+    <code>php artisan migrate</code>
+    <br>
+    <code>php artisan db:seed</code>
+    <br>
+    <code>php artisan serve</code>
+</p>
+
+
 ## Endpoints for API
 <p>
     Route: <code>/</code>
@@ -89,4 +114,38 @@
     Credentials for user:
     <br>
     <code>email: user@user.com password: password</code>
+</p>
+
+## Booking
+
+<p>
+    Route: <code>/user/bookings</code>
+    <br>
+    Method: <code>GET</code>
+    <br>
+    Description: <code>Go to select date and time for booking</code>
+</p>
+
+<p>
+    Route: <code>/user/bookings/:id/people</code>
+    <br>
+    Method: <code>GET</code>
+    <br>
+    Description: <code>Go to add the people for booking</code>
+</p>
+
+<p>
+    Route: <code>/user/bookings/:slotId/people</code>
+    <br>
+    Method: <code>POST</code>
+    <br>
+    Description: <code>Add the people for booking</code>
+</p>
+
+<p>
+    Route: <code>/user/schedules</code>
+    <br>
+    Method: <code>GET</code>
+    <br>
+    Description: <code>Get all user schedules</code>
 </p>

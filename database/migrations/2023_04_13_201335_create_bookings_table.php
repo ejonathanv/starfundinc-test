@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('service_id')->constrained();
             $table->foreignId('bookable_slot_id')->constrained();
-            $table->text('persons')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
         });

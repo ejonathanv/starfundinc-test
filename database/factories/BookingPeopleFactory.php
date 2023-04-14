@@ -18,9 +18,11 @@ class BookingPeopleFactory extends Factory
      */
     public function definition(): array
     {
+        $service = Service::inRandomOrder()->first();
+
         return [
             'booking_id' => Booking::factory(),
-            'service_id' => Service::factory(),
+            'service_id' => $service->id,
             'name' => $this->faker->name,
         ];
     }

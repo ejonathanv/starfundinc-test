@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
+use App\Models\Service;
+use App\Models\BookableSlot;
+use App\Models\BookingPeople;
 use App\Http\Requests\StoreBookingPeopleRequest;
 use App\Http\Requests\UpdateBookingPeopleRequest;
-use App\Models\BookingPeople;
 
 class BookingPeopleController extends Controller
 {
@@ -19,17 +22,36 @@ class BookingPeopleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(BookableSlot $slot)
     {
-        //
+        $services = Service::all();
+        return view('users.bookings.people.create', compact('services', 'slot'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBookingPeopleRequest $request)
+    public function store(StoreBookingPeopleRequest $request, BookableSlot $slot)
     {
-        //
+        $user = auth()->user();
+
+        $booking = Booking::firstOrCreate([
+            'user_id' => $user->id,
+            'bookable_slot_id' => $slot->id,
+        ]);
+        
+        $people = BookingPeople::create([
+            'booking_id' => $booking->id,
+            'service_id' => $request->service_id,
+            'name' => $request->name,
+        ]);
+
+        $response = [
+            'message' => 'Booking people created successfully',
+            'people' => $people
+        ];
+
+        return response()->json($response);
     }
 
     /**
