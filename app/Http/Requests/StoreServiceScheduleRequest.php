@@ -11,7 +11,7 @@ class StoreServiceScheduleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreServiceScheduleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'day_of_week' => 'required|numeric|min:0|max:6',
+            'start_at' => 'required|date_format:H:i',
+            'end_at' => 'required|date_format:H:i|after:start_at',
         ];
     }
 }

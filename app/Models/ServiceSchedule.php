@@ -10,6 +10,13 @@ class ServiceSchedule extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'service_id',
+        'day_of_week',
+        'start_at',
+        'end_at',
+    ];
+
     protected $appends = [
         'day',
     ];

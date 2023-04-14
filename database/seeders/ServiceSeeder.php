@@ -17,6 +17,7 @@ class ServiceSeeder extends Seeder
             'name' => 'Men Haircut',
             'description' => 'This haircut includes a shampoo, a haircut, and a blow dry.',
             'price' => 25,
+            'duration' => 30,
         ]);
         $this->generateSchedulesForService($menHaircut);
 
@@ -25,12 +26,15 @@ class ServiceSeeder extends Seeder
             'name' => 'Women Haircut',
             'description' => 'This haircut includes a shampoo, a haircut, blow dry, and the option of a style.',
             'price' => 30,
+            'duration' => 60,
         ]);
         $this->generateSchedulesForService($womenHaircut);
 
         $hairColouring = Service::factory()->create([
             'name' => 'Hair Colouring',
             'description' => 'If you want to change your hair colour or add highlights, this is the service for you.',
+            'price' => 50,
+            'duration' => 90,
         ]);
         $this->generateSchedulesForService($hairColouring);
     }
